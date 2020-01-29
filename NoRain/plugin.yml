@@ -1,0 +1,11 @@
+name: NoRain
+version: 0
+author: moderator_man
+main: me.moderator_man.nr.NoRain
+commands:
+    enablerain:
+        description: Enable rain
+        usage: /enablerain
+    disablerain:
+        description: Disable rain
+        usage: /disablerain
