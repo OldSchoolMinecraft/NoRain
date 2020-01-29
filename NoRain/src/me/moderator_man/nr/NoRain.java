@@ -29,8 +29,16 @@ public class NoRain extends JavaPlugin
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		Player player = (Player) sender;
+		
 		if (label.equalsIgnoreCase("enablerain"))
 		{
+			if (!player.isOp() && !player.hasPermission("osm.norain"))
+			{
+				sender.sendMessage(ChatColor.RED + "You aren't allowed to enable rain!");
+				return true;
+			}
+			
 			isRainEnabled = true;
 			sender.sendMessage(ChatColor.AQUA + "Rain is now " + ChatColor.GREEN + "enabled" + ChatColor.AQUA + ".");
 			return true;
@@ -38,8 +46,14 @@ public class NoRain extends JavaPlugin
 		
 		if (label.equalsIgnoreCase("disablerain"))
 		{
+			if (!player.isOp() && !player.hasPermission("osm.norain"))
+			{
+				sender.sendMessage(ChatColor.RED + "You aren't allowed to disable rain!");
+				return true;
+			}
+			
 			sender.sendMessage(ChatColor.AQUA + "Rain is now " + ChatColor.RED + "disabled" + ChatColor.AQUA + ".");
-			World world = ((Player) sender).getWorld();
+			World world = player.getWorld();
 			if (world.hasStorm())
 				world.setStorm(false);
 			isRainEnabled = false;
